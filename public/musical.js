@@ -1,32 +1,54 @@
 (function(){
-
-
+	function noteFreq(n) {
+		return 440 * Math.pow(2, (n - 69) / 12);
+	}
 
 	var context = new (window.AudioContext || window.webkitAudioContext)();
-	var osc = context.createOscillator();
-		osc.type = 'sine'; 
-		osc.connect(context.destination); 
-		osc.start();
 
-	var osc2 = context.createOscillator();
-		osc2.type = 'sine';
-		osc2.connect(context.destination);
-		osc2.start();
+	// cool(tm) synthesizer
+	var synth = (function() {
+		var oscillators = [];
+		for (var i = 0; i < 3; i++) {
+			var osc = context.createOscillator();
+			oscillators.push(osc);
+			osc.type = i == 1 ? 'square' : 'sine';
+			osc.connect(context.destination);
+			osc.start();
+		}
+
+		function play(note) {
+			for (var i = 0; i < oscillators.length; i++) {
+				var osc = oscillators[i];
+				osc.frequency.value = noteFreq(note - 12 * (i - 1));
+			}
+		}
+
+		function stop() {
+			for (var i = 0; i < oscillators.length; i++) {
+				var osc = oscillators[i];
+				osc.stop();
+			}
+		}
+
+		return {
+			play: play,
+			stop: stop,
+		};
+	})();
 
 	function test(index){ 
 		console.log(document.getElementById("freq"));
-		if (index >= notes.length) { 
-			osc.stop(); 
-			osc2.stop();
+		if (index >= notes.length) {
+			synth.stop();
 		} else { 
 			var note = notes[index];
 
 			$("#freq").html(note + " mg/dL");
-			osc.frequency.value = note; 
-			osc2.frequency.value = note + 100; 
+			note = Math.floor(36 + ((+note) * (48 / 200)));
+			synth.play(note);
 			setTimeout(function(){ 
 				test(index + 1); 
-			},100);  
+			}, 125);
 		} 
 	}
 
