@@ -19,6 +19,8 @@ app.get('/', function (req, res) {
 				notes.push(log.sgv);
 			}
 
+			notes = notes.reverse();
+			
 			var code = "var notes = "+JSON.stringify(notes)+";";
 			var html = "<html>" 
 						+ "<head>" 
