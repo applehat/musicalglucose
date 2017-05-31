@@ -8,7 +8,7 @@ app.get('/', function (req, res) {
 	
 
 	request({
-		url: 'http://www.beetusbeep.com/api/v1/entries.json?count=100',
+		url: 'http://www.beetusbeep.com/api/v1/entries.json?count=1000',
 		json: true
 	}, function (error, response, body) {
 		if (!error && response.statusCode === 200) {
@@ -24,11 +24,14 @@ app.get('/', function (req, res) {
 			var code = "var notes = "+JSON.stringify(notes)+";";
 			var html = "<html>" 
 						+ "<head>" 
-							+ "<title>Musical Glucose</title>" 
+							+ "<title>Musical Glucose</title>"
+							+ "<link rel=\"stylesheet\" href=\"//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css\">"
+    							+ "<script src=\"//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js\">"
 						+ "</head>" 
 						+ "<body>"
-							+ "A quick and dirty musical representation of my last 100 blood glucose readings: " 
+							+ "A quick and dirty musical representation of my last 1000 blood glucose readings: " 
 							+ "<span id=\"freq\">000 mg/dL</span>" 
+							+ "<div class=\"ct-chart ct-perfect-fourth\"></div>"
 							+ "<script src=\"https://code.jquery.com/jquery-3.2.1.min.js\" integrity=\"sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=\" crossorigin=\"anonymous\"></script>"
 							+ "<script type=\"text/javascript\">" + code + "</script>" 
 							+ "<script src=\"musical.js\" type=\"text/javascript\"></script>" 
