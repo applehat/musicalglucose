@@ -56,9 +56,9 @@
 	
 	var data = {
 		  // A labels array that can contain any sort of values
-		  labels: 'mg/dL',
+		  labels: notes,
 		  // Our series array that contains series objects or in this case series data arrays
-		  series: notes
+		  series: [notes]
 		};
 
 		// Create a new line chart object where as first parameter we pass in a selector
