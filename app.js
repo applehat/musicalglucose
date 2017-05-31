@@ -25,8 +25,6 @@ app.get('/', function (req, res) {
 			var html = "<html>" 
 						+ "<head>" 
 							+ "<title>Musical Glucose</title>"
-							+ "<link rel=\"stylesheet\" href=\"//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css\">"
-    							+ "<script src=\"//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js\">"
 						+ "</head>" 
 						+ "<body>"
 							+ "A quick and dirty musical representation of my last 1000 blood glucose readings: " 
@@ -34,6 +32,8 @@ app.get('/', function (req, res) {
 							+ "<div class=\"ct-chart ct-perfect-fourth\"></div>"
 							+ "<script src=\"https://code.jquery.com/jquery-3.2.1.min.js\" integrity=\"sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=\" crossorigin=\"anonymous\"></script>"
 							+ "<script type=\"text/javascript\">" + code + "</script>" 
+							+ "<link rel=\"stylesheet\" href=\"//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css\">"
+    							+ "<script src=\"//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js\"></script>"
 							+ "<script src=\"musical.js\" type=\"text/javascript\"></script>" 
 						+ "</body>" 
 					+"</html>";
