@@ -55,16 +55,21 @@
 	test(0);
 	
 	var data = {
-		  // A labels array that can contain any sort of values
 		  labels: notes,
-		  // Our series array that contains series objects or in this case series data arrays
 		  series: [notes]
 		};
+	var options = {
+		width: 600,
+		height: 445,
+		showPoint: false,
+		lineSmooth: false,
+		axisX: {
+		    showGrid: false,
+		    showLabel: false
+		}
+	};
 
-		// Create a new line chart object where as first parameter we pass in a selector
-		// that is resolving to our chart container element. The Second parameter
-		// is the actual data object.
-		new Chartist.Line('.ct-chart', data);
+	new Chartist.Line('.ct-chart', data, options);
 	
 
 })();
