@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var request = require('request');
+var nsurl = process.env.NSURL;
 
 app.use(express.static('public'));
 
@@ -8,7 +9,7 @@ app.get('/', function (req, res) {
 	
 
 	request({
-		url: 'http://www.beetusbeep.com/api/v1/entries.json?count=1000',
+		url: nsurl + '/api/v1/entries.json?count=1000',
 		json: true
 	}, function (error, response, body) {
 		if (!error && response.statusCode === 200) {
